@@ -3,224 +3,447 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mathew & Mya (Credits to Timmy Tih) — Wedding</title>
+<title>Mathew & Mya — Wedding</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
 
+:root {
+    --blue: #5BCEFA;
+    --pink: #F5A9B8;
+    --white: #FFFFFF;
+    --bg: #0a0a14;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    background-color: #05050f;
-    background-image: radial-gradient(circle at center, #10142e 0%, #05050f 100%);
-    color: #fff;
+    background-color: var(--bg);
+    background-image: radial-gradient(circle at 50% 0%, #1a1c3b 0%, #0a0a14 70%);
+    color: var(--white);
     font-family: 'Inter', sans-serif;
-    overflow: hidden;
-    height: 100vh;
+    overflow-x: hidden;
+    min-height: 100vh;
 }
 
-/* Stars Background */
+/* Trans Flag Top Bar */
+.flag-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0; height: 8px;
+    background: linear-gradient(to bottom, var(--blue) 20%, var(--pink) 20%, var(--pink) 40%, var(--white) 40%, var(--white) 60%, var(--pink) 60%, var(--pink) 80%, var(--blue) 80%);
+    z-index: 9999;
+    box-shadow: 0 0 15px rgba(91, 206, 250, 0.5);
+}
+
+/* Background Layers */
 .stars {
-    position: absolute;
-    inset: 0;
-    background-image: 
-        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 160px 120px, #fff, rgba(0,0,0,0));
-    background-repeat: repeat;
-    background-size: 200px 200px;
-    opacity: 0.3;
-    animation: twinkle 4s infinite alternate;
-    z-index: 0;
-}
-@keyframes twinkle { 0% { opacity: 0.2; } 100% { opacity: 0.6; } }
-
-/* Floating Rockets */
-#rocket-layer {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
+    position: fixed; inset: 0;
+    background-image: radial-gradient(1px 1px at 20px 30px, #fff, transparent), radial-gradient(1px 1px at 40px 70px, #fff, transparent), radial-gradient(2px 2px at 90px 40px, #fff, transparent), radial-gradient(2px 2px at 160px 120px, #fff, transparent);
+    background-repeat: repeat; background-size: 200px 200px;
+    opacity: 0.15; z-index: 0; pointer-events: none;
 }
 
+#rocket-layer { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
 .rocket-img {
     position: absolute;
-    width: 150px;
-    height: auto;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 20px rgba(91, 206, 250, 0.3);
+    border: 1px solid rgba(245, 169, 184, 0.3);
     opacity: 0;
     animation: floatRocket linear infinite;
 }
-
 @keyframes floatRocket {
-    0% { transform: translateY(110vh) translateX(0) rotate(15deg); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
-    100% { transform: translateY(-20vh) translateX(100px) rotate(25deg); opacity: 0; }
+    0% { transform: translateY(110vh) scale(0.8); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
 }
 
-/* Main Content */
+/* Main Container */
 .container {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    position: relative; z-index: 10;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 20px 40px;
+    display: flex; flex-direction: column; align-items: center;
     text-align: center;
-    backdrop-filter: blur(4px);
-    background: rgba(5,5,15,0.4);
 }
 
 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 400;
-    letter-spacing: 2px;
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 400; line-height: 1.1;
     margin-bottom: 10px;
     text-shadow: 0 4px 20px rgba(0,0,0,0.8);
 }
 
-h1 span {
+h1 span.accent {
     font-style: italic;
-    color: #a78bfa;
-    font-size: 0.8em;
-    margin: 0 15px;
+    background: linear-gradient(90deg, var(--blue), var(--pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0 10px;
 }
 
 h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    font-weight: 300;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #e2e8f0;
-    margin-bottom: 40px;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-weight: 300; letter-spacing: 6px; text-transform: uppercase;
+    color: var(--pink); margin-bottom: 30px;
 }
 
 .divider {
-    width: 100px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #a78bfa, transparent);
+    width: 150px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--white), transparent);
     margin-bottom: 40px;
 }
 
-.details {
-    display: flex;
-    gap: 40px;
-    font-size: 1rem;
-    color: #94a3b8;
-    margin-bottom: 50px;
+/* Working Countdown */
+#countdown {
+    display: flex; gap: 20px; margin-bottom: 50px;
 }
-
-.details div { display: flex; flex-direction: column; gap: 5px; }
-.details strong { color: #fff; font-weight: 600; font-size: 1.1rem; }
-
-.rsvp-btn {
-    padding: 15px 40px;
-    background: transparent;
-    border: 1px solid #a78bfa;
-    color: #a78bfa;
-    font-size: 1rem;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s;
-    border-radius: 4px;
+.time-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(91, 206, 250, 0.2);
+    padding: 15px 20px; border-radius: 12px;
+    min-width: 80px; backdrop-filter: blur(10px);
 }
+.time-box .num { font-size: 28px; font-weight: 700; color: var(--white); display: block; }
+.time-box .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); margin-top: 5px; }
 
-.rsvp-btn:hover {
-    background: #a78bfa;
-    color: #05050f;
-    box-shadow: 0 0 30px rgba(167,139,250,0.4);
+/* Details */
+.details-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    width: 100%; margin-bottom: 50px;
 }
+.detail-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245, 169, 184, 0.15);
+    border-radius: 16px; padding: 25px 15px;
+    backdrop-filter: blur(10px);
+}
+.detail-card h3 { font-size: 12px; color: var(--pink); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;}
+.detail-card p { font-size: 15px; font-weight: 600; color: var(--white); }
+
+/* Interactive Elements */
+.actions { display: flex; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; justify-content: center; }
+.btn {
+    padding: 15px 30px; border: none; border-radius: 8px;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    transition: 0.2s; text-transform: uppercase; letter-spacing: 1px;
+}
+.btn-primary { background: linear-gradient(135deg, var(--blue), var(--pink)); color: #000; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(245, 169, 184, 0.3); }
+.btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); }
+.btn-secondary:hover { background: rgba(255,255,255,0.2); }
+
+/* RSVP Form */
+#rsvp-section {
+    display: none; width: 100%; max-width: 400px;
+    background: rgba(15, 15, 30, 0.9); border: 1px solid var(--blue);
+    border-radius: 16px; padding: 30px; margin-bottom: 40px;
+    animation: fadeIn 0.3s;
+}
+#rsvp-section input, #rsvp-section select {
+    width: 100%; padding: 12px; margin-bottom: 15px;
+    background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px; color: #fff; font-family: inherit;
+}
+#rsvp-section input:focus { outline: none; border-color: var(--pink); }
+
+/* Guestbook */
+#guestbook { width: 100%; margin-top: 40px; text-align: left; }
+#guestbook h3 { color: var(--white); margin-bottom: 20px; font-size: 20px; }
+.gb-input-row { display: flex; gap: 10px; margin-bottom: 20px; }
+.gb-input-row input { flex: 1; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; }
+.gb-messages { display: flex; flex-direction: column; gap: 10px; }
+.gb-msg { background: rgba(91, 206, 250, 0.05); border-left: 3px solid var(--blue); padding: 12px 15px; border-radius: 0 8px 8px 0; font-size: 14px; }
+.gb-msg b { color: var(--pink); }
+
+/* The Meme Modal */
+#meme-modal {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+    justify-content: center; align-items: center; flex-direction: column;
+}
+#meme-modal img { max-width: 90%; max-height: 70vh; border-radius: 12px; box-shadow: 0 0 50px rgba(245, 169, 184, 0.5); border: 2px solid var(--pink); }
+#meme-modal p { color: var(--white); font-size: 20px; margin-top: 20px; font-weight: bold; }
+#meme-modal .close-btn { margin-top: 20px; padding: 10px 20px; background: var(--pink); color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 @media (max-width: 600px) {
-    .details { flex-direction: column; gap: 20px; }
-    h1 { font-size: 3rem; }
+    .details-grid { grid-template-columns: 1fr; }
+    #countdown { gap: 10px; }
+    .time-box { min-width: 65px; padding: 10px; }
+    .time-box .num { font-size: 20px; }
 }
 </style>
 </head>
 <body>
 
+<div class="flag-bar"></div>
 <div class="stars"></div>
 <div id="rocket-layer"></div>
 
 <div class="container">
-    <h1>Mathew <span>&</span> Mya</h1>
+    <h1>
+        <span id="name-mathew" style="cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Mathew</span> 
+        <span class="accent">&</span> 
+        <span id="name-mya" style="cursor: pointer;">Mya</span>
+    </h1>
+    
     <h2>Are Getting Married</h2>
     
     <div class="divider"></div>
-    
-    <div class="details">
-        <div>
-            <span>Date</span>
-            <strong>October 24, 2026</strong>
+
+    <!-- Countdown -->
+    <div id="countdown">
+        <div class="time-box"><span class="num" id="cd-days">0</span><span class="lbl">Days</span></div>
+        <div class="time-box"><span class="num" id="cd-hours">0</span><span class="lbl">Hours</span></div>
+        <div class="time-box"><span class="num" id="cd-mins">0</span><span class="lbl">Mins</span></div>
+        <div class="time-box"><span class="num" id="cd-secs">0</span><span class="lbl">Secs</span></div>
+    </div>
+
+    <!-- Details -->
+    <div class="details-grid">
+        <div class="detail-card">
+            <h3>Date</h3>
+            <p>October 24, 2026</p>
         </div>
-        <div>
-            <span>Location</span>
-            <strong>Launchpad 39A</strong>
+        <div class="detail-card">
+            <h3>Location</h3>
+            <p>Launchpad 39A</p>
         </div>
-        <div>
-            <span>Attire</span>
-            <strong>Astro-Formal</strong>
+        <div class="detail-card">
+            <h3>Attire</h3>
+            <p>Astro-Formal</p>
         </div>
     </div>
 
-    <button class="rsvp-btn" onclick="alert('RSVP Closed — See you at the launch!')">RSVP Now</button>
+    <!-- Actions -->
+    <div class="actions">
+        <button class="btn btn-primary" onclick="toggleRSVP()">RSVP Now</button>
+        <button class="btn btn-secondary" id="music-btn" onclick="toggleMusic()">Play Music 🎵</button>
+    </div>
+
+    <!-- RSVP Form -->
+    <div id="rsvp-section">
+        <h3 style="margin-bottom: 20px; color: var(--blue);">Secure Your Spot</h3>
+        <input type="text" id="rsvp-name" placeholder="Your Name">
+        <select id="rsvp-guests">
+            <option value="1">Just me</option>
+            <option value="2">Me + 1 Guest</option>
+            <option value="3">Me + 2 Guests</option>
+        </select>
+        <button class="btn btn-primary" style="width: 100%;" onclick="submitRSVP()">Submit RSVP</button>
+    </div>
+
+    <!-- Guestbook -->
+    <div id="guestbook">
+        <h3>Guestbook</h3>
+        <div class="gb-input-row">
+            <input type="text" id="gb-name" placeholder="Name">
+            <input type="text" id="gb-msg" placeholder="Leave a wish...">
+            <button class="btn btn-secondary" onclick="addGuestbook()">Send</button>
+        </div>
+        <div class="gb-messages" id="gb-list">
+            <div class="gb-msg"><b>Timmy Tih:</b> Congrats you two! 🚀</div>
+        </div>
+    </div>
+</div>
+
+<!-- The Meme Modal -->
+<div id="meme-modal">
+    <img src="https://i.imgflip.com/3si4.jpg" alt="Two guys kissing meme" id="meme-img">
+    <p>Happy Pride Month 🏳️‍⚧️</p>
+    <button class="close-btn" onclick="closeMeme()">Close</button>
 </div>
 
 <script>
-// Actual high-res rocket images (SpaceX / NASA)
+/* ═══════════════════════════════════════════════════════════
+   1. COUNTDOWN TIMER
+   ═══════════════════════════════════════════════════════════ */
+const weddingDate = new Date("Oct 24, 2026 00:00:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const dist = weddingDate - now;
+
+    const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+    const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((dist % (1000 * 60)) / 1000);
+
+    document.getElementById("cd-days").innerText = d;
+    document.getElementById("cd-hours").innerText = h;
+    document.getElementById("cd-mins").innerText = m;
+    document.getElementById("cd-secs").innerText = s;
+}, 1000);
+
+/* ═══════════════════════════════════════════════════════════
+   2. MEME EASTER EGG
+   ═══════════════════════════════════════════════════════════ */
+document.getElementById('name-mathew').addEventListener('click', () => {
+    document.getElementById('meme-modal').style.display = 'flex';
+});
+
+function closeMeme() {
+    document.getElementById('meme-modal').style.display = 'none';
+}
+
+// Mya click easter egg (Confetti)
+document.getElementById('name-mya').addEventListener('click', () => {
+    for(let i=0; i<50; i++) {
+        createConfetti();
+    }
+});
+
+/* ═══════════════════════════════════════════════════════════
+   3. RSVP FORM
+   ═══════════════════════════════════════════════════════════ */
+function toggleRSVP() {
+    const sec = document.getElementById('rsvp-section');
+    sec.style.display = sec.style.display === 'block' ? 'none' : 'block';
+}
+
+function submitRSVP() {
+    const name = document.getElementById('rsvp-name').value;
+    const guests = document.getElementById('rsvp-guests').value;
+    if(!name) { alert("Please enter your name!"); return; }
+    
+    alert(`Thank you, ${name}! Your RSVP for ${guests} person(s) has been received.`);
+    document.getElementById('rsvp-name').value = '';
+    toggleRSVP();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   4. GUESTBOOK
+   ═══════════════════════════════════════════════════════════ */
+function addGuestbook() {
+    const name = document.getElementById('gb-name').value;
+    const msg = document.getElementById('gb-msg').value;
+    if(!name || !msg) { alert("Please fill in both fields."); return; }
+
+    const list = document.getElementById('gb-list');
+    const div = document.createElement('div');
+    div.className = 'gb-msg';
+    div.innerHTML = `<b>${name}:</b> ${msg}`;
+    list.prepend(div);
+
+    document.getElementById('gb-name').value = '';
+    document.getElementById('gb-msg').value = '';
+}
+
+/* ═══════════════════════════════════════════════════════════
+   5. FLOATING ROCKETS
+   ═══════════════════════════════════════════════════════════ */
 const rocketImages = [
-    "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=300&q=80", // SpaceX Launch
-    "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=300&q=80", // Astronaut/Rocket
-    "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?auto=format&fit=crop&w=300&q=80", // Rocket Engine
-    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=300&q=80"  // Earth from space
+    "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&w=300&q=80",
+    "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=300&q=80",
+    "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?auto=format&fit=crop&w=300&q=80",
+    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=300&q=80"
 ];
 
 const layer = document.getElementById('rocket-layer');
 
 function spawnRocket() {
-    // Create image element
     const img = document.createElement('img');
     img.className = 'rocket-img';
-    
-    // Pick random image
     img.src = rocketImages[Math.floor(Math.random() * rocketImages.length)];
+    img.style.left = `${Math.random() * 85}vw`;
+    img.style.width = `${100 + Math.random() * 100}px`;
     
-    // Randomize horizontal start position
-    img.style.left = `${Math.random() * 80}vw`;
-    
-    // Randomize animation duration (how fast it floats up)
-    const duration = 8 + Math.random() * 7; 
+    const duration = 10 + Math.random() * 8; 
     img.style.animationDuration = `${duration}s`;
     
-    // Randomize size slightly
-    const scale = 0.6 + Math.random() * 0.8;
-    img.style.width = `${150 * scale}px`;
-
-    // Add to DOM
     layer.appendChild(img);
 
-    // Remove element after animation finishes to prevent lag
     setTimeout(() => {
-        if (img.parentNode) {
-            img.parentNode.removeChild(img);
-        }
+        if (img.parentNode) img.parentNode.removeChild(img);
     }, duration * 1000);
 }
 
-// Spawn a new rocket every 1.5 seconds
-setInterval(spawnRocket, 1500);
+setInterval(spawnRocket, 2000);
+for(let i=0; i<3; i++) setTimeout(spawnRocket, i * 600);
 
-// Spawn a few immediately on load
-for(let i=0; i<3; i++) {
-    setTimeout(spawnRocket, i * 500);
+/* ═══════════════════════════════════════════════════════════
+   6. WORKING AUDIO (Web Audio API)
+   ═══════════════════════════════════════════════════════════ */
+let audioCtx = null;
+let isPlaying = false;
+let musicInterval = null;
+
+function toggleMusic() {
+    const btn = document.getElementById('music-btn');
+    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    if(isPlaying) {
+        clearInterval(musicInterval);
+        isPlaying = false;
+        btn.innerText = "Play Music 🎵";
+    } else {
+        isPlaying = true;
+        btn.innerText = "Stop Music ⏸";
+        
+        // Simple romantic synth progression
+        const notes = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63]; // C E G C G E
+        let i = 0;
+        
+        musicInterval = setInterval(() => {
+            if(!isPlaying) return;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.value = notes[i % notes.length];
+            
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.8);
+            i++;
+        }, 400);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   7. MYA CLICK CONFETTI
+   ═══════════════════════════════════════════════════════════ */
+function createConfetti() {
+    const el = document.createElement('div');
+    el.style.position = 'fixed';
+    el.style.width = '10px';
+    el.style.height = '10px';
+    el.style.backgroundColor = Math.random() > 0.5 ? 'var(--blue)' : 'var(--pink)';
+    el.style.left = '50%';
+    el.style.top = '50%';
+    el.style.zIndex = '9999';
+    el.style.borderRadius = '50%';
+    el.style.pointerEvents = 'none';
+    
+    document.body.appendChild(el);
+    
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = 5 + Math.random() * 10;
+    const dx = Math.cos(angle) * velocity;
+    const dy = Math.sin(angle) * velocity;
+    
+    let x = 0, y = 0, opacity = 1;
+    
+    const interval = setInterval(() => {
+        x += dx;
+        y += dy + 1; // gravity
+        opacity -= 0.02;
+        el.style.transform = `translate(${x}px, ${y}px)`;
+        el.style.opacity = opacity;
+        
+        if(opacity <= 0) {
+            clearInterval(interval);
+            if(el.parentNode) el.parentNode.removeChild(el);
+        }
+    }, 16);
 }
 </script>
 
