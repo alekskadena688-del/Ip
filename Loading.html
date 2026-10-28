@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Processing...</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+    background: #000; 
+    color: #00ff00; 
+    font-family: 'Courier New', Courier, monospace; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    overflow: hidden;
+    flex-direction: column;
+}
+.terminal {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+.line { margin-bottom: 8px; opacity: 0; animation: fadeIn 0.1s forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+.blink { animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+#timmy {
+    display: none;
+    text-align: center;
+    color: #fff;
+}
+#timmy h1 { font-size: 50px; color: #ff0055; text-shadow: 0 0 20px #ff0055; margin-bottom: 10px;}
+#timmy p { color: #aaa; font-size: 18px; }
+</style>
+</head>
+<body>
+
+<div class="terminal" id="term">
+    <div class="line" style="animation-delay: 0.2s">> Connecting to Roblox servers...</div>
+    <div class="line" style="animation-delay: 1.0s">> Bypassing Epic Games 2FA...</div>
+    <div class="line" style="animation-delay: 1.8s">> Accessing V-Bucks database...</div>
+    <div class="line" style="animation-delay: 2.6s">> Injecting currency payload...</div>
+    <div class="line" style="animation-delay: 3.4s">> WARNING: Unauthorized access detected</div>
+    <div class="line" style="animation-delay: 4.2s">> Rerouting IP through proxy...</div>
+    <div class="line" style="animation-delay: 5.0s">> ERROR. YOU HAVE BEEN HACKED.</div>
+    <div class="line blink" style="animation-delay: 5.8s">> _</div>
+</div>
+
+<div id="timmy">
+    <h1>TIMMY TIH</h1>
+    <p>You just got trolled.</p>
+</div>
+
+<script>
+// Wait 6 seconds, then swap the terminal for the Timmy Tih screen
+setTimeout(() => {
+    document.getElementById('term').style.display = 'none';
+    document.getElementById('timmy').style.display = 'block';
+}, 6500);
+</script>
+
+</body>
+</html>
